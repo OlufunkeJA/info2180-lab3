@@ -4,19 +4,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
         for (const child of divList){
             try{
-                child.classList.add("square");
+                child.className = "square";
+                child.textContent = "";
             } 
             catch (error){
                 console.error("Error: Cannot add class 'square' to div.");
             }
         }
-
-        //Array to track plays
-        let count = [
-            [null,null,null],
-            [null,null,null],
-            [null,null,null]
-        ];
 
         //Implements Hover Functionality
         divList[0].addEventListener("mouseover", function(){
@@ -93,6 +87,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
         //Keeps track of which letter should be played
         let tracker = false;
+
+        //Array to track plays
+        let count = [
+            [null,null,null],
+            [null,null,null],
+            [null,null,null]
+        ];
+
+        console.log(count);
 
         //Implements Selection Functionality
         divList[0].addEventListener("click", function(){
@@ -228,8 +231,41 @@ document.addEventListener("DOMContentLoaded", function(){
                 count[2][2] = "O";
                 tracker = true;
             }
-        });       
-    }
+        });  
+        
+        const divStatus = document.querySelector("div#status");
+
+        if (count[0][0] == count[0][1] == count[0][2] == "X" //first row
+            || count[1][0] == count[1][1] == count[1][2] == "X" //second row
+            || count[2][0] == count[2][1] == count[2][2] == "X" //third row
+            || count[0][0] == count[1][0] == count[2][0] == "X" //first column
+            || count[0][1] == count[1][1] == count[2][1] == "X" //second column
+            || count[0][2] == count[1][2] == count[2][2] == "X" //third column
+            || count[0][0] == count[1][1] == count[2][2] == "X" //leading diagonal
+            || count[0][2] == count [1][1] == count[2][0] == "X") //non-leading diagonal
+        {
+            divStatus.classList.add("you-won");
+            divStatus.textContent = "Congratulations! X is the Winner!";
+        }
+        else if (count[0][0] == count[0][1] == count[0][2] == "O" //first row
+            || count[1][0] == count[1][1] == count[1][2] == "O" //second row
+            || count[2][0] == count[2][1] == count[2][2] == "O" //third row
+            || count[0][0] == count[1][0] == count[2][0] == "O" //first column
+            || count[0][1] == count[1][1] == count[2][1] == "O" //second column
+            || count[0][2] == count[1][2] == count[2][2] == "O" //third column
+            || count[0][0] == count[1][1] == count[2][2] == "O" //leading diagonal
+            || count[0][2] == count [1][1] == count[2][0] == "O") //non-leading diagonal
+        {
+            divStatus.classList.add("you-won");
+            divStatus.textContent = "Congratulations! O is the Winner!";
+        }
+
+        //Reset Game Functionality
+        btn = document.querySelector("button");
+        btn.addEventListener("click", function(){
+            newGame();
+        });
+    }   
 
     newGame();
 });
