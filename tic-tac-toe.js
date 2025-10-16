@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", function(){
     function newGame(){
         const divList = document.querySelectorAll("div#board > div");
+        const divStatus = document.querySelector("div#status");
 
         for (const child of divList){
             try{
                 child.className = "square";
                 child.textContent = "";
+                divStatus.textContent = "Move your mouse over a square and click to play an X or an O.";
+                divStatus.classList.remove("you-won");
             } 
             catch (error){
                 console.error("Error: Cannot add class 'square' to div.");
@@ -95,8 +98,6 @@ document.addEventListener("DOMContentLoaded", function(){
             [null,null,null]
         ];
 
-        console.log(count);
-
         //Implements Selection Functionality
         divList[0].addEventListener("click", function(){
             if (count[0][0] == null && tracker == true){
@@ -110,6 +111,33 @@ document.addEventListener("DOMContentLoaded", function(){
                 divList[0].textContent = "O";
                 count[0][0] = "O";
                 tracker = true;
+            }
+
+            if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "X" //first row 
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "X" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "X" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "X" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "X" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "X" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "X" //leading diagonal 
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "X") //non-leading diagonal
+            {
+                console.log(0);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! X is the Winner!";
+            }
+            else if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "O" //first row
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "O" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "O" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "O" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "O" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "O" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "O" //leading diagonal
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "O") //non-leading diagonal
+            {
+                console.log(0);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! O is the Winner!";
             }
         });
 
@@ -126,6 +154,33 @@ document.addEventListener("DOMContentLoaded", function(){
                 count[0][1] = "O";
                 tracker = true;
             }
+
+            if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "X" //first row 
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "X" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "X" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "X" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "X" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "X" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "X" //leading diagonal 
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "X") //non-leading diagonal
+            {
+                console.log(1);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! X is the Winner!";
+            }
+            else if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "O" //first row
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "O" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "O" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "O" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "O" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "O" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "O" //leading diagonal
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "O") //non-leading diagonal
+            {
+                console.log(1);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! O is the Winner!";
+            }
         });
 
         divList[2].addEventListener("click", function(){
@@ -140,6 +195,33 @@ document.addEventListener("DOMContentLoaded", function(){
                 divList[2].textContent = "O";
                 count[0][2] = "O";
                 tracker = true;
+            }
+
+            if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "X" //first row 
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "X" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "X" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "X" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "X" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "X" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "X" //leading diagonal 
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "X") //non-leading diagonal
+            {
+                console.log(2);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! X is the Winner!";
+            }
+            else if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "O" //first row
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "O" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "O" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "O" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "O" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "O" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "O" //leading diagonal
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "O") //non-leading diagonal
+            {
+                console.log(2);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! O is the Winner!";
             }
         });
 
@@ -156,6 +238,33 @@ document.addEventListener("DOMContentLoaded", function(){
                 count[1][0] = "O";
                 tracker = true;
             }
+
+            if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "X" //first row 
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "X" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "X" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "X" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "X" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "X" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "X" //leading diagonal 
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "X") //non-leading diagonal
+            {
+                console.log(3);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! X is the Winner!";
+            }
+            else if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "O" //first row
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "O" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "O" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "O" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "O" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "O" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "O" //leading diagonal
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "O") //non-leading diagonal
+            {
+                console.log(3);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! O is the Winner!";
+            }
         });
 
         divList[4].addEventListener("click", function(){
@@ -170,6 +279,33 @@ document.addEventListener("DOMContentLoaded", function(){
                 divList[4].textContent = "O";
                 count[1][1] = "O";
                 tracker = true;
+            }
+
+            if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "X" //first row 
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "X" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "X" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "X" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "X" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "X" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "X" //leading diagonal 
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "X") //non-leading diagonal
+            {
+                console.log(4);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! X is the Winner!";
+            }
+            else if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "O" //first row
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "O" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "O" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "O" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "O" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "O" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "O" //leading diagonal
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "O") //non-leading diagonal
+            {
+                console.log(4);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! O is the Winner!";
             }
         });
 
@@ -186,6 +322,33 @@ document.addEventListener("DOMContentLoaded", function(){
                 count[1][2] = "O";
                 tracker = true;
             }
+
+            if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "X" //first row 
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "X" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "X" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "X" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "X" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "X" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "X" //leading diagonal 
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "X") //non-leading diagonal
+            {
+                console.log(5);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! X is the Winner!";
+            }
+            else if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "O" //first row
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "O" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "O" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "O" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "O" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "O" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "O" //leading diagonal
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "O") //non-leading diagonal
+            {
+                console.log(5);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! O is the Winner!";
+            }
         });
 
         divList[6].addEventListener("click", function(){
@@ -200,6 +363,33 @@ document.addEventListener("DOMContentLoaded", function(){
                 divList[6].textContent = "O";
                 count[2][0] = "O";
                 tracker = true;
+            }
+
+            if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "X" //first row 
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "X" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "X" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "X" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "X" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "X" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "X" //leading diagonal 
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "X") //non-leading diagonal
+            {
+                console.log(6);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! X is the Winner!";
+            }
+            else if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "O" //first row
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "O" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "O" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "O" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "O" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "O" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "O" //leading diagonal
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "O") //non-leading diagonal
+            {
+                console.log(6);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! O is the Winner!";
             }
         });
 
@@ -216,6 +406,33 @@ document.addEventListener("DOMContentLoaded", function(){
                 count[2][1] = "O";
                 tracker = true;
             }
+
+            if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "X" //first row 
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "X" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "X" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "X" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "X" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "X" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "X" //leading diagonal 
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "X") //non-leading diagonal
+            {
+                console.log(7);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! X is the Winner!";
+            }
+            else if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "O" //first row
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "O" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "O" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "O" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "O" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "O" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "O" //leading diagonal
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "O") //non-leading diagonal
+            {
+                console.log(7);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! O is the Winner!";
+            }
         });
 
         divList[8].addEventListener("click", function(){
@@ -231,34 +448,36 @@ document.addEventListener("DOMContentLoaded", function(){
                 count[2][2] = "O";
                 tracker = true;
             }
-        });  
-        
-        const divStatus = document.querySelector("div#status");
 
-        if (count[0][0] == count[0][1] == count[0][2] == "X" //first row
-            || count[1][0] == count[1][1] == count[1][2] == "X" //second row
-            || count[2][0] == count[2][1] == count[2][2] == "X" //third row
-            || count[0][0] == count[1][0] == count[2][0] == "X" //first column
-            || count[0][1] == count[1][1] == count[2][1] == "X" //second column
-            || count[0][2] == count[1][2] == count[2][2] == "X" //third column
-            || count[0][0] == count[1][1] == count[2][2] == "X" //leading diagonal
-            || count[0][2] == count [1][1] == count[2][0] == "X") //non-leading diagonal
-        {
-            divStatus.classList.add("you-won");
-            divStatus.textContent = "Congratulations! X is the Winner!";
-        }
-        else if (count[0][0] == count[0][1] == count[0][2] == "O" //first row
-            || count[1][0] == count[1][1] == count[1][2] == "O" //second row
-            || count[2][0] == count[2][1] == count[2][2] == "O" //third row
-            || count[0][0] == count[1][0] == count[2][0] == "O" //first column
-            || count[0][1] == count[1][1] == count[2][1] == "O" //second column
-            || count[0][2] == count[1][2] == count[2][2] == "O" //third column
-            || count[0][0] == count[1][1] == count[2][2] == "O" //leading diagonal
-            || count[0][2] == count [1][1] == count[2][0] == "O") //non-leading diagonal
-        {
-            divStatus.classList.add("you-won");
-            divStatus.textContent = "Congratulations! O is the Winner!";
-        }
+            if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "X" //first row 
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "X" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "X" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "X" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "X" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "X" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "X" //leading diagonal 
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "X") //non-leading diagonal
+            {
+                console.log(8);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! X is the Winner!";
+            }
+            else if (count[0][0] === count[0][1] && count[0][1] === count[0][2] && count[0][0] === count[0][2] && count[0][0] === "O" //first row
+                || count[1][0] === count[1][1] && count[1][1] === count[1][2] && count[1][0] === count[1][2] && count[1][0] === "O" //second row
+                || count[2][0] === count[2][1] && count[2][1] === count[2][2] && count[2][0] === count[2][2] && count[2][0] === "O" //third row
+                || count[0][0] === count[1][0] && count[1][0] === count[2][0] && count[0][0] === count[2][0] && count[0][0] === "O" //first column
+                || count[0][1] === count[1][1] && count[1][1] === count[2][1] && count[0][1] === count[2][1] && count[0][1] === "O" //second column
+                || count[0][2] === count[1][2] && count[1][2] === count[2][2] && count[0][2] === count[2][2] && count[0][2] === "O" //third column
+                || count[0][0] === count[1][1] && count[1][1] === count[2][2] && count[0][0] === count[2][2] && count[0][0] === "O" //leading diagonal
+                || count[0][2] === count [1][1] && count[1][1] === count[2][0] && count[0][2] === count[2][0] && count[0][2] === "O") //non-leading diagonal
+            {
+                console.log(8);
+                divStatus.classList.add("you-won");
+                divStatus.textContent = "Congratulations! O is the Winner!";
+            }
+        });  
+
+        console.log(count);
 
         //Reset Game Functionality
         btn = document.querySelector("button");
