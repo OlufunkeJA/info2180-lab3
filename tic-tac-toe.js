@@ -5,6 +5,7 @@ let count = [
     [null,null,null]
 ];
 
+
 //Keeps track of which letter should be played
 let tracker = false;
 
